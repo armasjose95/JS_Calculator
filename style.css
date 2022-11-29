@@ -1,0 +1,74 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-weight: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #00aaff, #00ff6c);
+}
+
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  /* Want to align the entre content of this grid in the center not just the items */
+  align-content: center;
+  min-height: 100vh; /* Fill 100% of the screen all the time */
+  grid-template-columns: repeat(
+    4,
+    100px
+  ); /* 4 columns of buttons and our columns are going to be 100px wide */
+  /* output column can grow and is 120px min but can expand as large as needed for larger numbers */
+  /* 5 different rows of buttons */
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.calculator-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  /* Slightly opaque white background but only 75% opaque */
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.span-two {
+  /* Want grid-column to span two columns */
+  grid-column: span 2;
+}
+
+.output {
+  /* Go from column 1 to -1(essentially just the last column). Fits entire width of our top row  */
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, 0.75);
+  /* Align items in our container & push elements a bit closer to each other and a little further away from the top and right side*/
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  /* Line up elements vertically instead of horizontally */
+  flex-direction: column;
+  /* Dont want everything pushed up to the edges of container */
+  padding: 10px;
+  /* Allows us to say where we want to break our words in the middle of it, not just the end of a word or in a space */
+  /* Wraps to the next line  */
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.output .previous-operand {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
+}
